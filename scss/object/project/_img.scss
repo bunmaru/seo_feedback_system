@@ -1,0 +1,66 @@
+/**
+* 画像
+*/
+.p-floting-img {
+	border-radius: 10px;
+	box-shadow: 0 2.5rem 2rem -2rem rgba(0, 0, 0, 0.2);
+}
+
+.p-scroll-img {
+
+	&__inn {
+		box-shadow: 0 2.5rem 2rem -2rem rgba(0, 0, 0, 0.2);
+
+		&::before,
+		&::after {
+			background-color: #959595;
+			content: "";
+			display: block;
+			height: 40px;
+			border-radius: 10px 10px 0 0;
+		}
+
+		&::after {
+			border-radius: 0 0 10px 10px;
+		}
+	}
+
+	&__box {
+		position: relative;
+		overflow-y: scroll;
+		border: 2px solid #959595;
+		border-radius: 0;
+	}
+
+	&--sp {
+
+		.p-scroll-img__inn {
+			width: 290px;
+			margin: 0 auto;
+		}
+
+	}
+
+	&--pc {
+
+		.p-scroll-img__inn {
+
+			&::after {
+				content: none;
+			}
+		}
+
+		.p-scroll-img__box {
+			border-radius: 0 0 10px 10px;
+		}
+	}
+
+	img {
+		border-radius: 0 0 10px 10px;
+	}
+
+	figure {
+		margin-bottom: 0;
+	}
+}
+

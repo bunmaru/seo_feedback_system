@@ -1,0 +1,22 @@
+/**
+* 鍵付きラベル
+*/
+.p-lock-label {
+	color: #11a98d;
+	display: inline-flex;
+	background: #fff;
+	font-size: 1.3rem;
+	line-height: 1;
+	padding: 6px 12px;
+	align-items: center;
+	border-radius: 50px;
+
+	&-text {
+		margin-left: 8px;
+	}
+}
+
+.p-lock-label-islock {
+	color: $textColor;
+	background: #fcc711;
+}

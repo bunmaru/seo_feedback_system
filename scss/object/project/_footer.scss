@@ -1,0 +1,36 @@
+/**
+* フッター
+*/
+.p-footer {
+
+	.l-contents {
+
+		padding-top: 16px;
+		padding-bottom: 16px;
+
+		@include mq-up(md) {
+			padding-top: 24px;
+			padding-bottom: 24px;
+		}
+	}
+
+	&-logo-area {
+		display: flex;
+		justify-content: center;
+		align-items: baseline;
+	}
+
+	&-logo-link {
+		font-size: 2.4rem;
+		color: #fff;
+		text-decoration: none;
+	}
+
+	&-powerd {
+		font-size: 1.2rem;
+		color: $textColor2;
+		text-decoration: none;
+		margin-left: 16px;
+	}
+
+}

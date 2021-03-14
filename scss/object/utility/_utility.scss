@@ -1,0 +1,98 @@
+/**
+* 背景
+*/
+.u-bg-yellow {
+	background-color: $backColor1;
+}
+
+.u-bg-dark {
+	background-color: $backColor2;
+}
+
+
+/**
+* 丸み
+*/
+.u-br-50 {
+	border-radius: 50%;
+}
+
+.u-br-normal {
+	border-radius: 10px;
+}
+
+
+/**
+* ボーダー
+*/
+.u-border-white {
+	border: 5px solid #fff;
+}
+
+.u-border-top-dashed {
+	border-top: 1px dashed #d0d0d0;
+}
+
+
+/**
+* マージン
+*/
+.u-mr-icon {
+	margin-right: 8px;
+}
+
+
+/**
+* 表示・非表示
+*/
+.u-sp-hdn {
+
+	@include mq-down(md) {
+		display: none;
+	}
+}
+
+.u-pc-hdn {
+
+	@include mq-up(md) {
+		display: none;
+	}
+}
+
+
+/**
+* フォント
+*/
+.u-text-aside {
+	font-size: 1.3rem;
+	color: $textColor2;
+}
+
+.u-lineh-s {
+	line-height: 1.5;
+}
+
+.u-font-strong {
+	font-weight: 700;
+}
+
+.u-fontfamily-nomal {
+	font-family: "Noto Sans JP", sans-serif;
+}
+
+.u-ta-center {
+	text-align: center;
+}
+
+
+
+/**
+* ホバー
+*/
+.u-hover-enlarge {
+	transition: 0.3s;
+
+	&:hover {
+		transform: scale(1.05);
+	}
+}

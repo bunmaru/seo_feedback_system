@@ -1,0 +1,28 @@
+/*
+Theme Name: Collection
+Theme URL: テーマのサイトのURI
+Description: テーマの説明
+Author: Bond
+Version: 1.0.0
+Tags: テーマの特徴を表すタグ（カンマ区切り/オプション）
+License: テーマのライセンス
+License URI: テーマのライセンスのURI
+*/
+@charset "utf-8";
+@import "scss/foundation/base";
+@import "scss/layout/layout";
+@import "scss/object/project/article";
+@import "scss/object/component/component";
+@import "scss/object/project/other";
+@import "scss/object/project/progress";
+@import "scss/object/project/form";
+@import "scss/object/project/card";
+@import "scss/object/project/footer";
+@import "scss/object/project/header";
+@import "scss/object/project/img";
+@import "scss/object/project/label";
+@import "scss/object/project/list";
+@import "scss/object/project/nav";
+@import "scss/object/project/pagination";
+@import "scss/object/project/sns";
+@import "scss/object/utility/utility";

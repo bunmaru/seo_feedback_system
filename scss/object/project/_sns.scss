@@ -1,0 +1,45 @@
+/**
+* SNS
+*/
+.p-share {
+
+	&-list-area {
+		display: flex;
+		justify-content: center;
+	}
+
+	&-item {
+
+		& + & {
+			margin-left: 40px;
+		}
+	}
+
+	&-link {
+		font-size: 2.4rem;
+
+		.fab {
+			transition: all 0.3s;
+		}
+
+		&:hover {
+
+			.fab {
+				transform: scale(1.2);
+			}
+
+		}
+
+		&-tw {
+			color: #29adf3;
+		}
+
+		&-fa {
+			color: #0076fb;
+		}
+
+		&-li {
+			color: #00be00;
+		}
+	}
+}

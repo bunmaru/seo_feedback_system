@@ -1,0 +1,25 @@
+/**
+* パスワード認証解除フォーム
+*/
+.p-password {
+	text-align: center;
+
+	form {
+		margin-top: 40px;
+	}
+
+	input[type="password"] {
+		width: 80%;
+		height: 56px;
+		padding: 16px;
+		box-sizing: border-box;
+		border-radius: 10px;
+		border: 1px solid #818181;
+	}
+
+	input[type="submit"] {
+		border: none;
+		margin-top: 20px;
+
+	}
+}

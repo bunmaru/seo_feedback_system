@@ -1,0 +1,116 @@
+/**
+* ページネーション　一覧
+*/
+.p-pagination {
+
+	ul {
+		display: flex;
+		margin: 0;
+		padding: 0;
+		list-style: none;
+		justify-content: center;
+
+		&::after {
+			display: block;
+			clear: both;
+			content: "";
+		}
+
+		li {
+
+			.current {
+				color: $textColor;
+			}
+
+			a,
+			> span {
+				font-size: 14px;
+				display: block;
+				margin: 0 3px;
+				padding: 8px;
+				text-decoration: none;
+				color: $textColor2;
+
+				&:hover {
+					color: $textColor;
+				}
+			}
+		}
+	}
+}
+
+
+/**
+* ページネーション　前後
+*/
+.p-pagination2 {
+	display: flex;
+	justify-content: center;
+
+	&-text {
+		line-height: 1.2;
+	}
+
+	&-link {
+		text-decoration: none;
+		color: $textColor;
+		display: flex;
+		align-items: center;
+
+		& + & {
+			margin-left: 64px;
+		}
+
+		.fas {
+			color: $linkColor;
+			transition: all 0.3s;
+		}
+	}
+
+	&-link-prev {
+
+		.fas {
+			margin-right: 8px;
+		}
+	}
+
+	&-link-next {
+
+		.fas {
+			margin-left: 8px;
+		}
+
+		&:hover {
+
+			.fas {
+				transform: translate3d(0.4em, 0, 0) scale(1.2);
+			}
+		}
+	}
+
+	&-link-home {
+
+		&:hover {
+
+			.fas {
+				transform: translate3d(0, 0, 0) scale(1.2);
+			}
+		}
+	}
+
+	&-link:hover {
+
+		.p-pagination2-text span {
+			transform: translateY(-120%);
+		}
+
+		.p-pagination2-text::before {
+			transform: translateY(0);
+		}
+
+		.fas {
+			transform: translate3d(-0.4em, 0, 0) scale(1.2);
+
+		}
+	}
+}

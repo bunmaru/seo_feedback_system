@@ -1,0 +1,38 @@
+/**
+* プログレスバー
+*/
+.p-progress {
+
+	&-inner {
+
+		& + & {
+			margin-top: 24px;
+		}
+	}
+
+	&-bar-area {
+		display: flex;
+		height: 18px;
+		overflow: hidden;
+		background-color: #e9ecef;
+		border-radius: 50px;
+		margin: 8px 0 0 0 !important;
+	}
+
+	&-bar {
+		background-color: #007bff;
+		background-image: linear-gradient(to right, #fc835f, #e8505b);
+		border-radius: 50px;
+	}
+
+	&-meta {
+		display: flex;
+		justify-content: space-between;
+		margin: 8px 0 0 0 !important;
+	}
+
+	&-title {
+		margin: 0 !important;
+	}
+}
+

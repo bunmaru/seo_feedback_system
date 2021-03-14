@@ -1,0 +1,108 @@
+/**
+* ボタン
+*/
+.c-btn {
+	display: inline-block;
+	padding: 10px 20px;
+	background-color: $linkColor;
+	border-radius: 35px;
+	font-size: 1.2rem;
+	text-decoration: none;
+	font-weight: 700;
+	line-height: 1;
+	transition: all 0.3s ease-out;
+}
+
+.c-btn-primary {
+	color: #fff;
+}
+
+/**
+* ラベル
+*/
+.c-label {
+	background-color: $textColor2;
+	border-radius: 5px;
+	line-height: 1;
+	padding: 4px 8px;
+	color: #fff;
+}
+
+.c-label-round-l {
+	border-radius: 50px;
+}
+
+.c-label-light {
+	background-color: #a9a9a9;
+}
+
+.c-label-spin {
+	position: relative;
+	transition: 0.3s;
+	overflow: hidden;
+
+	&::before {
+		content: attr(data-text);
+		position: absolute;
+		top: 0;
+		left: 0;
+		transform: translateY(120%);
+		transition: 0.3s;
+		color: $linkColor;
+	}
+
+	&-text {
+		transition: all 0.3s;
+		display: inline-block;
+	}
+}
+
+/**
+* 画像
+*/
+.c-img-fixed-ratio {
+	width: 100%;
+	height: auto;
+	position: relative;
+
+	&::before {
+		content: "";
+		display: block;
+		padding-top: calc(100% / 3 * 2);
+	}
+
+	img {
+		margin: auto;
+		position: absolute;
+		width: auto;
+		height: auto;
+		max-width: 100%;
+		max-height: 100%;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+	}
+}
+
+.c-img-fixed-ratio--browser {
+
+	&::before {
+		padding-top: calc(100% / 16 * 9);
+	}
+
+	img {
+		max-height: none;
+		bottom: auto;
+	}
+}
+
+.p-scroll-img--sp {
+
+	.c-img-fixed-ratio--browser {
+
+		&::before {
+			padding-top: calc(100% / 9 * 14);
+		}
+	}
+}

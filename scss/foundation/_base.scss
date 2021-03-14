@@ -1,0 +1,143 @@
+// 変数の定義
+$textColor:#222;
+$textColor2:#777;
+$backColor1: #f9f7ef;
+$backColor2: #25222e;
+$backColor3: #f6f6f6;
+$linkColor: #3789be;
+$totalWidth: 996px;
+$marginM:36px;
+
+//メディアクエリ
+$breakpoint-up: ("sm": "screen and (min-width: 480px)",
+"md": "screen and (min-width: 768px)",
+"lg": "screen and (min-width: 960px)",
+"xl": "screen and (min-width: 1200px)",
+) !default;
+
+$breakpoint-down: ("sm": "screen and (max-width: 479px)",
+"md": "screen and (max-width: 767px)",
+"lg": "screen and (max-width: 959px)",
+"xl": "screen and (max-width: 1199px)",
+) !default;
+
+// @mixinの定義
+@mixin mq-up($breakpoint: sm) {
+
+	@media #{map-get($breakpoint-up, $breakpoint)} {
+		@content;
+	}
+}
+
+@mixin mq-up($breakpoint: md) {
+
+	@media #{map-get($breakpoint-up, $breakpoint)} {
+		@content;
+	}
+}
+
+@mixin mq-up($breakpoint: lg) {
+
+	@media #{map-get($breakpoint-up, $breakpoint)} {
+		@content;
+	}
+}
+
+@mixin mq-up($breakpoint: xl) {
+
+	@media #{map-get($breakpoint-up, $breakpoint)} {
+		@content;
+	}
+}
+
+@mixin mq-down($breakpoint: md) {
+
+	@media #{map-get($breakpoint-down, $breakpoint)} {
+		@content;
+	}
+}
+
+
+/**
+* 初期化
+*/
+html {
+	font-size: 62.5%;
+	font-weight: 400;
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	vertical-align: baseline;
+	border: 0;
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+ul,
+ol,
+dl,
+li,
+dt,
+dd,
+p,
+div,
+span,
+img,
+a,
+table,
+tr,
+th,
+td,
+blockquote,
+pre,
+code {
+	font-weight: 400;
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	vertical-align: baseline;
+	border: 0;
+}
+
+article,
+header,
+footer,
+aside,
+figure,
+figcaption,
+nav,
+section {
+	display: block;
+	margin: 0;
+	box-sizing: border-box;
+}
+
+ol,
+ul {
+	list-style: none;
+	list-style-type: none;
+}
+
+a {
+	color: $linkColor;
+}
+
+body {
+	font-family: "Josefin Sans", "Noto Sans JP", sans-serif;
+	font-size: 1.6rem;
+	line-height: 1.8;
+	margin: 0;
+	letter-spacing: 0.05em;
+	color: $textColor;
+	-ms-text-size-adjust: 100%;
+	-webkit-text-size-adjust: 100%;
+}
+
+img {
+	max-width: 100%;
+	height: auto;
+	vertical-align: bottom;
+}

@@ -1,0 +1,126 @@
+/**
+* レイアウト
+*/
+.l-header-inner {
+	padding: 0 3%;
+}
+
+.l-contents {
+	padding: 40px 16px;
+	width: 100%;
+	margin: 0 auto;
+	box-sizing: border-box;
+
+	@include mq-up(md) {
+		max-width: 1060px;
+		padding: 64px 32px;
+	}
+}
+
+/* 上にずらすコンテンツ。l-contentsと一緒に使う */
+.l-contents-shihtup {
+	margin-top: -50px;
+
+	&.l-contents {
+		padding: 0 32px 40px;
+
+		@include mq-up(md) {
+			padding: 0 40px 64px;
+		}
+	}
+}
+
+/* 横幅を狭めるコンテンツ。l-contentsと一緒か子クラスとして使う */
+.l-contents-narrow {
+	width: 100%;
+	margin-left: auto;
+	margin-right: auto;
+
+	@include mq-up(md) {
+		max-width: 720px;
+	}
+}
+
+/* 高さを狭めるコンテンツ。l-contentsと一緒か子クラスとして使う */
+.l-contents-short {
+	padding-top: 16px;
+	padding-bottom: 16px;
+
+	@include mq-up(md) {
+		padding-top: 24px;
+		padding-bottom: 24px;
+	}
+}
+
+.l-content-m {
+	margin-top: 40px;
+
+	@include mq-up(md) {
+		margin-top: 56px;
+	}
+}
+
+.l-content-s {
+	margin-top: 24px;
+
+	@include mq-up(md) {
+		margin-top: 32px;
+	}
+}
+
+/**
+* 横並びコンテンツ
+*/
+.l-row {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	margin-bottom: -32px;
+
+	@include mq-up(md) {
+		margin-bottom: -48px;
+	}
+
+	& > * {
+		margin-bottom: 32px;
+
+		@include mq-up(md) {
+			margin-bottom: 48px;
+		}
+	}
+
+	&::after {
+
+		@include mq-up(lg) {
+			display: block;
+			content: "";
+			width: calc((100% - 96px) / 3);
+		}
+	}
+
+	@include mq-up(md) {
+		margin-bottom: -56px;
+	}
+
+}
+
+.l-col2-s {
+
+	@include mq-up(sm) {
+		flex: 0 0 calc((100% - 32px) / 2);
+	}
+}
+
+.l-col3-md {
+
+	@include mq-up(md) {
+		flex: 0 0 calc((100% - 96px) / 3);
+	}
+}
+
+.l-col3-lg {
+
+	@include mq-up(lg) {
+		flex: 0 0 calc((100% - 96px) / 3);
+	}
+}

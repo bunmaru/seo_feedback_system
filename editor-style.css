@@ -1,0 +1,11 @@
+body {
+	font-family: sans-serif;
+	line-height: 1.8;
+	margin: 0;
+	letter-spacing: 0.05em;
+	padding: 20px;
+}
+
+body#tinymce {
+	padding: 20px !important;
+}
