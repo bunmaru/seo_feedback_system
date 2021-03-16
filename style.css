@@ -121,6 +121,24 @@ img {
 	text-align: center;
 }
 
+.p-header__strong {
+	background-color: #fffece;
+	color: #2138b7;
+	display: inline-block;
+	font-weight: 900;
+	padding: 10px;
+}
+
+.p-header__txt {
+	background-color: #2138b7;
+	color: #fff;
+	font-size: 42px;
+	font-weight: 900;
+	line-height: 1;
+	padding: 30px;
+	text-align: center;
+}
+
 .p-flex {
 	display: -webkit-box;
 	display: -ms-flexbox;
@@ -147,7 +165,7 @@ img {
 
 .p-chart__graph {
 	height: 710px;
-	margin-top: 40px;
+	margin: 40px auto 0 auto;
 	width: 710px;
 }
 
@@ -159,7 +177,7 @@ img {
 
 .p-chart__last {
 	background-color: #efec03;
-	color: 111;
+	color: #111;
 	padding: 20px;
 }
 
@@ -264,7 +282,6 @@ img {
 	font-size: 40px;
 	justify-content: center;
 	margin-left: 2px;
-	padding: 20px;
 }
 
 .p-bottom-contents {
@@ -301,6 +318,14 @@ img {
 	font-size: 20px;
 	font-weight: 700;
 	line-height: 1;
+}
+
+.p-meesage__title * {
+	font-weight: 700;
+}
+
+.p-meesage__title span {
+	padding-left: 0.5em;
 }
 
 .p-meesage__txt {

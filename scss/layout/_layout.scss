@@ -14,6 +14,27 @@
 	padding: 30px 40px 30px 20px;
 }
 
+.p-header {
+
+	&__txt {
+		font-size: 42px;
+		font-weight: 900;
+		color: #fff;
+		padding: 30px;
+		background-color: $mainColor;
+		text-align: center;
+		line-height: 1;
+	}
+
+	&__strong {
+		background-color: #fffece;
+		display: inline-block;
+		padding: 10px;
+		color: $mainColor;
+		font-weight: 900;
+	}
+}
+
 .p-header__txt {
 	font-size: 42px;
 	font-weight: 900;
@@ -46,7 +67,7 @@
 	}
 
 	&__graph {
-		margin-top: 40px;
+		margin: 40px auto 0 auto;
 		height: 710px;
 		width: 710px;
 	}
@@ -60,7 +81,7 @@
 	&__last {
 		background-color: #efec03;
 		padding: 20px;
-		color: 111;
+		color: #111;
 
 		* {
 			font-weight: 700;
@@ -164,7 +185,6 @@
 
 	&__score {
 		flex: 0 0 70px;
-		padding: 20px;
 		font-size: 40px;
 		display: flex;
 		justify-content: center;
@@ -200,6 +220,14 @@
 	padding: 30px 40px;
 
 	&__title {
+
+		* {
+			font-weight: 700;
+		}
+
+		span {
+			padding-left: 0.5em;
+		}
 		font-size: 20px;
 		font-weight: 700;
 		line-height: 1;
