@@ -1,3 +1,6 @@
+/**
+* レイアウト
+*/
 #l-header,
 #l-container,
 #l-bottom {
@@ -14,6 +17,9 @@
 	padding: 30px 40px 30px 20px;
 }
 
+/**
+* ヘッダー
+*/
 .p-header {
 
 	&__txt {
@@ -35,20 +41,15 @@
 	}
 }
 
-.p-header__txt {
-	font-size: 42px;
-	font-weight: 900;
-	color: #fff;
-	padding: 30px;
-	background-color: $mainColor;
-	text-align: center;
-	line-height: 1;
-}
 
 .p-flex {
 	display: flex;
 }
 
+
+/**
+* チャート
+*/
 .p-chart {
 	border: 11px solid #e3f3ff;
 	background-color: #f7fbff;
@@ -68,7 +69,7 @@
 
 	&__graph {
 		margin: 40px auto 0 auto;
-		height: 710px;
+		height: 730px;
 		width: 710px;
 	}
 
@@ -138,6 +139,17 @@
 	}
 }
 
+.p-chart-logo {
+	margin: auto;
+	width: 250px;
+	position: absolute;
+	bottom: 20px;
+	right: 20px;
+}
+
+/**
+* 項目
+*/
 .p-list {
 
 	* {
@@ -167,7 +179,7 @@
 	}
 
 	&__title-area {
-		flex: 1 0 auto;
+		flex: 1 0 calc(100% - 70px);
 		padding: 20px;
 
 	}
@@ -181,6 +193,8 @@
 
 	&__comment {
 		margin-top: 10px;
+		overflow: hidden;
+		height: 1em;
 	}
 
 	&__score {
@@ -193,6 +207,9 @@
 	}
 }
 
+/**
+* ボトム
+*/
 .p-bottom-contents {
 	border-top: 3px solid $mainColor;
 }
@@ -237,6 +254,8 @@
 
 	&__txt {
 		margin-top: 20px;
+		overflow: hidden;
+		height: calc(4em * 1.8);//4行目以降は非表示
 	}
 }
 
@@ -244,6 +263,9 @@
 	margin-top: 16px;
 }
 
+/**
+* インデックスページ
+*/
 .p-index {
 	width: 980px;
 	margin: 0 auto;
@@ -291,6 +313,9 @@
 
 }
 
+/**
+* ボタン
+*/
 .c-btn {
 	display: block;
 	text-align: center;
@@ -309,3 +334,4 @@
 	}
 
 }
+

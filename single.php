@@ -7,18 +7,16 @@
 
 $rank_first_time        = get_field( 'rank_first_time' );// 初回時の称号.
 $rank_last_time         = get_field( 'rank_last_time' );// 最終回時の称号.
-$total_score_first_time = get_field( 'total_score_first_time' );// 初回時の総合得点.
-$total_score_last_time  = get_field( 'total_score_last_time' );// 採取会時の総合得点.
 $message                = get_field( 'message' );// 担当者からのメッセージ.
 $name                   = get_field( 'name' );// 受講者名前.
 $date_start             = get_field( 'date_start' );// 受講開始日.
 $date_end               = get_field( 'date_end' );// 受講完了日.
-$detail_array           = array();// タイトル、コメント、スコアをまとめた配列.
 $score_first_time_array = explode( ',', get_field( 'score_first_time' ) );// 初回時の点数(配列).
 $score_last_time_array  = array();// 終了時の各点数(配列).
 $title_array            = array();// 終了時の各点数(配列).
 
-// 10項目を取得し配列に格納する
+// 1タイトル、コメント、スコアをまとめた配列を作成
+$detail_array = array();
 for ( $i = 1; $i <= 10; $i++ ) {
 	$num                     = sprintf( '%02d', $i );// 二桁に整形する.
 	$score_last_time_array[] = get_field( 'score_' . $num );
@@ -29,6 +27,17 @@ for ( $i = 1; $i <= 10; $i++ ) {
 		'score'   => get_field( 'score_' . $num ),
 	);
 }
+
+// 総合スコアの計算.
+$total_score_first_time = 0;
+foreach ( $score_first_time_array as $score ) {
+	$total_score_first_time += intval( $score );
+}
+$total_score_last_time = 0;
+foreach ( $score_last_time_array as $score ) {
+	$total_score_last_time += intval( $score );
+}
+
 ?>
 
 <?php get_header(); ?>
@@ -62,6 +71,9 @@ for ( $i = 1; $i <= 10; $i++ ) {
 						<p class="p-chart__first-small">(初回)</p>
 					</div>
 				</div>
+				<div class="p-chart-logo">
+					<img src="<?php echo esc_html( get_template_directory_uri() . '/images/logo.svg' ); ?>" alt="<?php bloginfo( 'name' ); ?>">
+				</div>
 			</div>
 		</section>
 
@@ -92,7 +104,7 @@ for ( $i = 1; $i <= 10; $i++ ) {
 		<div class="p-bottom-contents p-flex">
 			<div class="p-meesage">
 				<h2 class="p-meesage__title"><i class="far fa-comment"></i><span>担当者からのメッセージ</span></h2>
-				<p class="p-meesage__txt"><?php echo esc_html( $message ); ?></p>
+				<p class="p-meesage__txt"><?php echo wp_kses_post( $message ); ?></p>
 			</div>
 			<div class="p-meta">
 				<p class="p-meta__name"><?php echo esc_html( $name ); ?></p>
@@ -117,7 +129,7 @@ $score_first_time_json = wp_json_encode( $score_first_time_array );// 初回時�
 $score_last_time_json  = wp_json_encode( $score_last_time_array );// 終了時の点数(json).
 
 // 項目名に改行を入れるため、多重配列にする.
-$title_array_br        = array();
+$title_array_br = array();
 foreach ( $title_array as $title_string ) {
 	if ( 7 < mb_strlen( $title_string, 'UTF-8' ) ) {
 		$title_array_br[] = array(
