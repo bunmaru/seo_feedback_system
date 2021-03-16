@@ -198,7 +198,7 @@
 }
 
 .p-meta {
-	flex: 1 0 416px;
+	flex: 0 0 416px;
 	padding: 30px 40px;
 	background-color: #fafafa;
 
@@ -218,6 +218,7 @@
 
 .p-meesage {
 	padding: 30px 40px;
+	flex: 1 0 calc(100% - 416px);
 
 	&__title {
 
@@ -241,4 +242,70 @@
 
 .p-logo {
 	margin-top: 16px;
+}
+
+.p-index {
+	width: 980px;
+	margin: 0 auto;
+	padding: 60px;
+}
+
+.p-pagination {
+
+	display: flex;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	justify-content: center;
+	margin-top: 1.25rem;
+
+	@include mq-up(md) {
+		margin-top: 1.5rem;
+	}
+
+	&__pager {
+		font-size: 0.75rem;
+		margin: 0 0.25rem;
+		text-decoration: none;
+		color: $mainColor;
+		border: 1px solid #abbcd4;
+		width: 2rem;
+		height: 2rem;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+
+		@include mq-up(md) {
+			font-size: 0.875rem;
+		}
+
+		&:hover {
+			color: $textColor;
+		}
+	}
+
+	&__current {
+		color: white;
+		background-color: #abbcd4;
+	}
+
+}
+
+.c-btn {
+	display: block;
+	text-align: center;
+	padding: 0.5rem  1rem;
+	background-color: #fff;
+	border: 1px solid $mainColor;
+	border-radius: 3px;
+	font-size: 0.875rem;
+	text-decoration: none;
+	font-weight: 700;
+	line-height: 1;
+	color: $mainColor;
+
+	span {
+		font-weight: 700;
+	}
+
 }

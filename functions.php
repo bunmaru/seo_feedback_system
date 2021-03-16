@@ -122,100 +122,57 @@ function col_load_css_js() {
 	wp_enqueue_script( 'chart', 'https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js', array(), $version, false );
 }
 add_action( 'wp_enqueue_scripts', 'col_load_css_js' );
+
 /**
- * OGPタグ/Twitterカード設定を出力
+ * 　ページネーションを出力する
+ *
+ * @param int $max_num_pages 該当のクエリのトータルページ数.
+ * @param int $now_paged 現在のページ数.
  */
-function col_outoput_ogp() {
-	if ( is_front_page() || is_home() || is_singular() ) {
-		global $post;
-		$ogp_title = '';
-		$ogp_descr = '';
-		$ogp_url   = '';
-		$ogp_img   = '';
-		$insert    = '';
+function col_the_pagenation( $max_num_pages = 0, $now_paged = '1' ) {
+	// 表示テキスト.
+	$text_first  = '«';
+	$text_before = '‹';
+	$text_next   = '›';
+	$text_last   = '»';
+	$range       = 2;
 
-		// 記事＆固定ページ.
-		if ( is_singular() ) {
-			setup_postdata( $post );
-			$ogp_title = $post->post_title;
-			$ogp_descr = mb_substr( get_the_excerpt(), 0, 100 );
-			$ogp_url   = get_permalink();
-			wp_reset_postdata();
-			// トップページ.
-		} elseif ( is_front_page() || is_home() ) {
-			$ogp_title = get_bloginfo( 'name' );
-			$ogp_descr = get_bloginfo( 'description' );
-			$ogp_url   = home_url();
-		}
-
-		// og:type.
-		$ogp_type = ( is_front_page() || is_home() ) ? 'website' : 'article';
-
-		// og:image.
-		if ( is_singular() && has_post_thumbnail() ) {
-			$ps_thumb = wp_get_attachment_image_src( get_post_thumbnail_id(), 'full' );
-			$ogp_img  = $ps_thumb[0];
-		} else {
-			$ogp_img = '';
-		}
-
-		$insert .= '<meta property="og:title" content="' . esc_attr( $ogp_title ) . '" />' . "\n";
-		$insert .= '<meta property="og:description" content="' . esc_attr( $ogp_descr ) . '" />' . "\n";
-		$insert .= '<meta property="og:type" content="' . $ogp_type . '" />' . "\n";
-		$insert .= '<meta property="og:url" content="' . esc_url( $ogp_url ) . '" />' . "\n";
-		$insert .= '<meta property="og:image" content="' . esc_url( $ogp_img ) . '" />' . "\n";
-		$insert .= '<meta property="og:site_name" content="' . esc_attr( get_bloginfo( 'name' ) ) . '" />' . "\n";
-		$insert .= '<meta name="twitter:card" content="summary_large_image" />' . "\n";
-		$insert .= '<meta name="twitter:site" content="@kaisetsusan" />' . "\n";
-		$insert .= '<meta property="og:locale" content="ja_JP" />' . "\n";
-
-		// facebookのapp_id（設定する場合）
-		// $insert .= '<meta property="fb:app_id" content="#####ここにappIDを入力">' . "\n";
-		// app_idを設定しない場合ここまで消す.
-
-		$allowed_html = array(
-			'meta' => array(
-				'property' => array(),
-				'content'  => array(),
-				'name'     => array(),
-			),
-		);
-		echo wp_kses( $insert, $allowed_html );
+	if ( $max_num_pages < 2 ) {
+		return;
 	}
-}
-add_action( 'wp_head', 'col_outoput_ogp' );
 
-/**
- * パスワード保護した記事の文言から「保護中：」を削除する
- *
- * @param string $title パラメーター.
- */
-function col_remove_protected( $title ) {
-	return '%s';
-}
-add_filter( 'protected_title_format', 'col_remove_protected' );
+	$result = '';
 
-/**
- * パスワード保護に解除に関する文言を変更する
- */
-function col_modify_password_text() {
-	return '<div class="p-password">
-	  <p>このコンテンツはパスワードで保護されています。<br> 閲覧するには以下にパスワードを入力してください。<p>
-	  <form class="post_password" action="' . esc_url( home_url() . '/wp-login.php?action=postpass' ) . '" method="post">
-	  <input name="post_password" type="password" size="24" />
-	  <input class="c-btn c-btn-primary  u-hover-enlarge" type="submit" name="Submit" value="' . esc_attr( 'パスワード送信' ) . '" />
-	  </form>
-	  </div>';
-}
-add_filter( 'the_password_form', 'col_modify_password_text' );
+	// 現在のページ番号が全ページ数よりも少ないときは「次のページ」タグを出力.
+	if ( $now_paged < $max_num_pages ) {
+		$url    = get_pagenum_link( $now_paged + 1 );
+		$result = '<a href="' . esc_url( $url ) . '" class="c-btn u-mt-on-btn"><span class="c-arrow">次のページ</span></a>';
+	}
 
-/**
- * パスワード保護の有効期限を変更する
- *
- * @param string $timeout パラメーター.
- */
-function col_customize_cockie_timeout( $timeout ) {
-	// return time() + 2 * MINUTE_IN_SECONDS;
-	return time() + 24 * HOUR_IN_SECONDS;
+	$result .= '<div class="p-pagination">';
+
+	if ( $now_paged > 1 ) {
+		// 「前へ」 の表示
+		$result .= '<a href="' . get_pagenum_link( 1 ) . '" class="p-pagination__first p-pagination__pager">' . $text_first . '</a>';
+		$result .= '<a href="' . get_pagenum_link( $now_paged - 1 ) . '" class="p-pagination__prev p-pagination__pager">' . $text_before . '</a>';
+	}
+	for ( $i = 1; $i <= $max_num_pages; $i++ ) {
+
+		if ( $i <= $now_paged + $range && $i >= $now_paged - $range ) {
+			// $paged +- $range 以内であればページ番号を出力
+			if ( $now_paged === $i ) {
+				$result .= '<span class="p-pagination__current p-pagination__pager">' . $i . '</span>';
+			} else {
+				$result .= '<a href="' . get_pagenum_link( $i ) . '" class="p-pagination__pager">' . $i . '</a>';
+			}
+		}
+	}
+	if ( $now_paged < $max_num_pages ) {
+		// 「次へ」 の表示
+		$result .= '<a href="' . get_pagenum_link( $now_paged + 1 ) . '" class="p-pagination__next p-pagination__pager">' . $text_next . '</a>';
+		$result .= '<a href="' . get_pagenum_link( $max_num_pages ) . '" class="p-pagination__last p-pagination__pager">' . $text_last . '</a>';
+	}
+
+	$result .= '</div>';
+	echo wp_kses( $result, wp_kses_allowed_html( 'post' ) );
 }
-add_filter( 'post_password_expires', 'col_customize_cockie_timeout' );
