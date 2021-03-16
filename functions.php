@@ -37,9 +37,6 @@ function col_theme_setup() {
 }
 add_action( 'after_setup_theme', 'col_theme_setup' );
 
-// アイキャッチ画像の追加.
-add_image_size( 'thumb-996', 996, 560, array( 'center', 'top' ) ); // 記事ページのMV.
-add_image_size( 'thumb-600', 600, 400, array( 'center', 'top' ) ); // サムネイルサイズ.
 
 // 画像アップロード時の、自動縮小を止める.
 add_filter( 'wp_big_image_size_threshold', '__return_false' );
@@ -47,9 +44,9 @@ add_filter( 'wp_big_image_size_threshold', '__return_false' );
 /**
  * 関数を個々に読み込む
  */
-get_template_part( 'inc/customizer' ); // カスタマイザーの設定.
+//get_template_part( 'inc/customizer' ); // カスタマイザーの設定.
 // get_template_part( 'inc/widgets' ); // ウィジェットの設定.
-get_template_part( 'inc/shortcode' ); // ショートコードの設定.
+//get_template_part( 'inc/shortcode' ); // ショートコードの設定.
 // get_template_part( 'inc/search' ); // 検索ページの機能.
 
 /**
@@ -120,16 +117,11 @@ function col_load_css_js() {
 	// google_fonts.
 	wp_enqueue_style( 'google_fonts', 'https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&family=Noto+Sans:wght@400;700&display=swap', array(), $version );
 	// fontawesome.
-	wp_enqueue_script( 'fontawesome', 'https://kit.fontawesome.com/421ad94433.js', array(), $version, true );
-	// highlight.js.
-	if ( is_singular() ) {
-		wp_enqueue_style( 'hljs-style', '//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.2.1/build/styles/monokai-sublime.min.css', array(), $version );
-		wp_enqueue_script( 'hljs-script', '//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.2.1/build/highlight.min.js', array(), $version, true );
-		wp_add_inline_script( 'hljs-script', 'hljs.initHighlightingOnLoad();' );
-	}
+	wp_enqueue_script( 'fontawesome', 'https://kit.fontawesome.com/421ad94433.js', array(), $version, false );
+	// google_fonts.
+	wp_enqueue_script( 'chart', 'https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js', array(), $version, false );
 }
 add_action( 'wp_enqueue_scripts', 'col_load_css_js' );
-
 /**
  * OGPタグ/Twitterカード設定を出力
  */

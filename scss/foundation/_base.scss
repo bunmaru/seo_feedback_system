@@ -1,12 +1,6 @@
 // 変数の定義
-$textColor:#222;
-$textColor2:#777;
-$backColor1: #f9f7ef;
-$backColor2: #25222e;
-$backColor3: #f6f6f6;
-$linkColor: #3789be;
-$totalWidth: 996px;
-$marginM:36px;
+$textColor:#5a5a5a;
+$mainColor:#2138b7;
 
 //メディアクエリ
 $breakpoint-up: ("sm": "screen and (min-width: 480px)",
@@ -122,15 +116,15 @@ ul {
 }
 
 a {
-	color: $linkColor;
+	color: $mainColor;
 }
 
 body {
-	font-family: "Josefin Sans", "Noto Sans JP", sans-serif;
-	font-size: 1.6rem;
+	font-family: "Noto Sans JP", sans-serif;
+	font-size: 16px;
 	line-height: 1.8;
 	margin: 0;
-	letter-spacing: 0.05em;
+	letter-spacing: 0;
 	color: $textColor;
 	-ms-text-size-adjust: 100%;
 	-webkit-text-size-adjust: 100%;

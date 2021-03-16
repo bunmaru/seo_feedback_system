@@ -1,126 +1,216 @@
-/**
-* レイアウト
-*/
-.l-header-inner {
-	padding: 0 3%;
+#l-header,
+#l-container,
+#l-bottom {
+	width: 1920px;
 }
 
-.l-contents {
-	padding: 40px 16px;
-	width: 100%;
-	margin: 0 auto;
-	box-sizing: border-box;
-
-	@include mq-up(md) {
-		max-width: 1060px;
-		padding: 64px 32px;
-	}
+#l-left {
+	flex: 0 0 50%;
+	padding: 30px 20px 30px 40px;
 }
 
-/* 上にずらすコンテンツ。l-contentsと一緒に使う */
-.l-contents-shihtup {
-	margin-top: -50px;
-
-	&.l-contents {
-		padding: 0 32px 40px;
-
-		@include mq-up(md) {
-			padding: 0 40px 64px;
-		}
-	}
+#l-right {
+	flex: 0 0 50%;
+	padding: 30px 40px 30px 20px;
 }
 
-/* 横幅を狭めるコンテンツ。l-contentsと一緒か子クラスとして使う */
-.l-contents-narrow {
-	width: 100%;
-	margin-left: auto;
-	margin-right: auto;
-
-	@include mq-up(md) {
-		max-width: 720px;
-	}
+.p-header__txt {
+	font-size: 42px;
+	font-weight: 900;
+	color: #fff;
+	padding: 30px;
+	background-color: $mainColor;
+	text-align: center;
+	line-height: 1;
 }
 
-/* 高さを狭めるコンテンツ。l-contentsと一緒か子クラスとして使う */
-.l-contents-short {
-	padding-top: 16px;
-	padding-bottom: 16px;
-
-	@include mq-up(md) {
-		padding-top: 24px;
-		padding-bottom: 24px;
-	}
-}
-
-.l-content-m {
-	margin-top: 40px;
-
-	@include mq-up(md) {
-		margin-top: 56px;
-	}
-}
-
-.l-content-s {
-	margin-top: 24px;
-
-	@include mq-up(md) {
-		margin-top: 32px;
-	}
-}
-
-/**
-* 横並びコンテンツ
-*/
-.l-row {
+.p-flex {
 	display: flex;
-	flex-wrap: wrap;
-	justify-content: space-between;
-	margin-bottom: -32px;
+}
 
-	@include mq-up(md) {
-		margin-bottom: -48px;
+.p-chart {
+	border: 11px solid #e3f3ff;
+	background-color: #f7fbff;
+	padding: 40px;
+	text-align: center;
+	position: relative;
+
+	&__title {
+		font-size: 36px;
+		font-weight: 700;
+		color: $mainColor;
+		border-bottom: 1px solid $mainColor;
+		padding-bottom: 30px;
+		line-height: 1;
+		display: inline-block;
 	}
 
-	& > * {
-		margin-bottom: 32px;
+	&__graph {
+		margin-top: 40px;
+		height: 710px;
+		width: 710px;
+	}
 
-		@include mq-up(md) {
-			margin-bottom: 48px;
+	&__score {
+		left: 30px;
+		position: absolute;
+		top: -20px;
+	}
+
+	&__last {
+		background-color: #efec03;
+		padding: 20px;
+		color: 111;
+
+		* {
+			font-weight: 700;
+			line-height: 1;
 		}
 	}
 
-	&::after {
+	&__last-title {
+		font-size: 14px;
+	}
 
-		@include mq-up(lg) {
-			display: block;
+	&__last-score {
+		font-size: 55px;
+		margin-top: 16px;
+	}
+
+	&__last-small {
+		font-size: 14px;
+		margin-top: 6px;
+	}
+
+	&__first {
+		background-color: #4e4e33;
+		color: white;
+		line-height: 1;
+		padding: 20px;
+		position: relative;
+
+		* {
+			font-weight: bold;
+		}
+
+		&::before {
+			position: absolute;
+			top: -40px;
+			width: 0;
+			left: 0;
+			right: 0;
+			margin: auto;
 			content: "";
-			width: calc((100% - 96px) / 3);
+			display: block;
+			border: 30px solid;
+			border-color: transparent transparent #4e4e33 transparent;
 		}
 	}
 
-	@include mq-up(md) {
-		margin-bottom: -56px;
+	&__first-score {
+		font-size: 26px;
 	}
 
-}
-
-.l-col2-s {
-
-	@include mq-up(sm) {
-		flex: 0 0 calc((100% - 32px) / 2);
+	&__first-small {
+		font-size: 14px;
+		margin-top: 4px;
 	}
 }
 
-.l-col3-md {
+.p-list {
 
-	@include mq-up(md) {
-		flex: 0 0 calc((100% - 96px) / 3);
+	* {
+		font-weight: 700;
+		line-height: 1;
+	}
+
+	&__box {
+
+		&:nth-of-type(even) {
+
+			.p-list__title-area,
+			.p-list__score {
+				background-color: #f7fbff;
+			}
+
+		}
+
+		&:nth-of-type(odd) {
+
+			.p-list__title-area,
+			.p-list__score {
+				background-color: #e3f3ff;
+			}
+
+		}
+	}
+
+	&__title-area {
+		flex: 1 0 auto;
+		padding: 20px;
+
+	}
+
+	&__title {
+		background-color: #7989e6;
+		display: inline-block;
+		padding: 6px 10px;
+		color: white;
+	}
+
+	&__comment {
+		margin-top: 10px;
+	}
+
+	&__score {
+		flex: 0 0 70px;
+		padding: 20px;
+		font-size: 40px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		margin-left: 2px;
 	}
 }
 
-.l-col3-lg {
+.p-bottom-contents {
+	border-top: 3px solid $mainColor;
+}
 
-	@include mq-up(lg) {
-		flex: 0 0 calc((100% - 96px) / 3);
+.p-meta {
+	flex: 1 0 416px;
+	padding: 30px 40px;
+	background-color: #fafafa;
+
+	&__name {
+		border: 1px solid #707070;
+		padding: 10px;
+		font-size: 20px;
+		font-weight: 700;
 	}
+
+	&__date {
+		border: 1px solid #707070;
+		padding: 10px;
+		margin-top: -1px;
+	}
+}
+
+.p-meesage {
+	padding: 30px 40px;
+
+	&__title {
+		font-size: 20px;
+		font-weight: 700;
+		line-height: 1;
+		color: $mainColor;
+	}
+
+	&__txt {
+		margin-top: 20px;
+	}
+}
+
+.p-logo {
+	margin-top: 16px;
 }
