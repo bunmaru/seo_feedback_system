@@ -15,14 +15,19 @@ $score_first_time_array = explode( ',', get_field( 'score_first_time' ) );// 初
 $score_last_time_array  = array();// 終了時の各点数(配列).
 $title_array            = array();// 終了時の各点数(配列).
 
-// 1タイトル、コメント、スコアをまとめた配列を作成
+// タイトル、コメント、スコアを配列　に格納
 $detail_array = array();
 for ( $i = 1; $i <= 10; $i++ ) {
-	$num                     = sprintf( '%02d', $i );// 二桁に整形する.
+	$num = sprintf( '%02d', $i );// 二桁に整形する.
+
 	$score_last_time_array[] = get_field( 'score_' . $num );
-	$title_array[]           = $i . '.' . get_field_object( 'comment_' . $num )['label'];
-	$detail_array[]          = array(
-		'title'   => $i . '.' . get_field_object( 'comment_' . $num )['label'],
+
+	$target_title  = get_field_object( 'comment_' . $num )['label'];
+	$title_array[] = $i . '.' . $target_title;
+
+	// チャートの右側のリスト表示用の配列.
+	$detail_array[] = array(
+		'title'   => $i . '.' . str_replace( '<br>', '', $target_title ),// brタグを除去して格納.
 		'comment' => get_field( 'comment_' . $num ),
 		'score'   => get_field( 'score_' . $num ),
 	);
@@ -128,19 +133,12 @@ foreach ( $score_last_time_array as $score ) {
 $score_first_time_json = wp_json_encode( $score_first_time_array );// 初回時の点数(json).
 $score_last_time_json  = wp_json_encode( $score_last_time_array );// 終了時の点数(json).
 
-// 項目名に改行を入れるため、多重配列にする.
+// 項目名の設定。
+// ラベル項目名に<br>タグがあった場合、改行する
+// chart.jsの使用上、項目名に改行を入れるためには多重配列にする必要があるのでその対応も行う.
 $title_array_br = array();
 foreach ( $title_array as $title_string ) {
-	if ( 7 < mb_strlen( $title_string, 'UTF-8' ) ) {
-		$title_array_br[] = array(
-			mb_substr( $title_string, 0, 7, 'UTF-8' ),
-			mb_substr( $title_string, 7, 100, 'UTF-8' ),
-		);
-	} else {
-		$title_array_br[] = array(
-			$title_string,
-		);
-	}
+	$title_array_br[] = explode( '<br>', $title_string );
 }
 $title_array_json = wp_json_encode( $title_array_br, JSON_UNESCAPED_UNICODE );// 終了時の点数(json).
 
