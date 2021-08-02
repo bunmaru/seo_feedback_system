@@ -258,8 +258,8 @@ img {
 
 .p-list__title-area {
 	-webkit-box-flex: 1;
-	-ms-flex: 1 0 calc(100% - 70px);
-	flex: 1 0 calc(100% - 70px);
+	-ms-flex: 1 0 calc(100% - 110px - 2px);
+	flex: 1 0 calc(100% - 110px - 2px);
 	padding: 30px;
 }
 
@@ -284,14 +284,13 @@ img {
 	display: -webkit-box;
 	display: -ms-flexbox;
 	display: flex;
-	-ms-flex: 0 0 70px;
-	flex: 0 0 70px;
+	-ms-flex: 0 0 110px;
+	flex: 0 0 110px;
 	-ms-flex-align: center;
 	-ms-flex-pack: center;
 	font-size: 40px;
 	justify-content: center;
 	margin-left: 2px;
-	padding: 0 30px;
 }
 
 /**

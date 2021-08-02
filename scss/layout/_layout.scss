@@ -182,7 +182,7 @@
 	}
 
 	&__title-area {
-		flex: 1 0 calc(100% - 70px);
+		flex: 1 0 calc(100% - 110px - 2px);
 		padding: 30px;
 
 	}
@@ -201,13 +201,12 @@
 	}
 
 	&__score {
-		flex: 0 0 70px;
+		flex: 0 0 110px;
 		font-size: 40px;
 		display: flex;
 		justify-content: center;
 		align-items: center;
 		margin-left: 2px;
-		padding: 0 30px;
 	}
 }
 
