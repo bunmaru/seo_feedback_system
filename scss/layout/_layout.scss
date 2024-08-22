@@ -4,17 +4,17 @@
 #l-header,
 #l-container,
 #l-bottom {
-	width: 1920px;
+	width: 1371px;
 }
 
 #l-left {
-	flex: 0 0 50%;
-	padding: 30px 20px 30px 40px;
 }
 
 #l-right {
-	flex: 0 0 50%;
-	padding: 30px 40px 30px 20px;
+}
+
+.l-container__inn {
+	padding: 40px 80px;
 }
 
 /**
@@ -68,9 +68,8 @@
 	}
 
 	&__graph {
-		margin: 40px auto 0 auto;
-		height: 730px;
-		width: 710px;
+		margin: 0 auto;
+		width: 660px;
 	}
 
 	&__score {
@@ -147,6 +146,10 @@
 	right: 20px;
 }
 
+.p-right-contents {
+	margin-top: 40px;
+}
+
 /**
 * 項目
 */
@@ -179,8 +182,8 @@
 	}
 
 	&__title-area {
-		flex: 1 0 calc(100% - 70px);
-		padding: 20px;
+		flex: 1 0 calc(100% - 110px - 2px);
+		padding: 30px;
 
 	}
 
@@ -198,12 +201,13 @@
 	}
 
 	&__score {
-		flex: 0 0 70px;
+		flex: 0 0 110px;
 		font-size: 40px;
 		display: flex;
 		justify-content: center;
 		align-items: center;
 		margin-left: 2px;
+		padding: 0 30px;
 	}
 }
 
@@ -216,7 +220,7 @@
 
 .p-meta {
 	flex: 0 0 416px;
-	padding: 30px 40px;
+	padding: 40px 80px 40px 40px;
 	background-color: #fafafa;
 
 	&__name {
@@ -234,7 +238,7 @@
 }
 
 .p-meesage {
-	padding: 30px 40px;
+	padding: 40px 40px 40px 80px;
 	flex: 1 0 calc(100% - 416px);
 
 	&__title {
@@ -255,7 +259,7 @@
 	&__txt {
 		margin-top: 20px;
 		overflow: hidden;
-		height: calc(4em * 1.8);//4行目以降は非表示
+		height: calc(6em * 1.8);//4行目以降は非表示
 	}
 }
 

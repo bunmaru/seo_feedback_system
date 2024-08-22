@@ -5,39 +5,35 @@
  * @package Collection
  */
 
-$rank_first_time        = get_field( 'rank_first_time' );// 初回時の称号.
-$rank_last_time         = get_field( 'rank_last_time' );// 最終回時の称号.
-$message                = get_field( 'message' );// 担当者からのメッセージ.
-$name                   = get_field( 'name' );// 受講者名前.
-$date_start             = get_field( 'date_start' );// 受講開始日.
-$date_end               = get_field( 'date_end' );// 受講完了日.
-$score_first_time_array = explode( ',', get_field( 'score_first_time' ) );// 初回時の点数(配列).
-$score_last_time_array  = array();// 終了時の各点数(配列).
-$title_array            = array();// 終了時の各点数(配列).
+$rank_last_time        = get_field( 'rank_last_time' );// 最終回時の称号.
+$message               = get_field( 'message' );// 担当者からのメッセージ.
+$name                  = get_field( 'name' );// 受講者名前.
+$date_start            = get_field( 'date_start' );// 受講開始日.
+$date_end              = get_field( 'date_end' );// 受講完了日.
+$score_last_time_array = array();// 終了時の各点数(配列).
+$title_array           = array();// 各項目のタイトル.
 
-// タイトル、コメント、スコアを配列　に格納
+// タイトル、コメント、スコアを配列に格納(項目削除と順序変更対応により、1,6,5,8,4の順で格納).
 $detail_array = array();
-for ( $i = 1; $i <= 10; $i++ ) {
-	$num = sprintf( '%02d', $i );// 二桁に整形する.
+$output_index = array( '01', '06', '05', '08', '04' );
 
-	$score_last_time_array[] = get_field( 'score_' . $num );
-
-	$target_title  = get_field_object( 'comment_' . $num )['label'];
-	$title_array[] = $i . '.' . $target_title;
+$count = 1;
+foreach ( $output_index as $idx ) {
+	$num                     = sprintf( '%02d', $count );// 二桁に整形する.
+	$score_last_time_array[] = get_field( 'score_' . $idx );
+	$target_title            = get_field_object( 'comment_' . $idx )['label'];
+	$title_array[]           = $num . '.' . $target_title;
 
 	// チャートの右側のリスト表示用の配列.
 	$detail_array[] = array(
-		'title'   => $i . '.' . str_replace( '<br>', '', $target_title ),// brタグを除去して格納.
-		'comment' => get_field( 'comment_' . $num ),
-		'score'   => get_field( 'score_' . $num ),
+		'title'   => $num . '.' . str_replace( '<br>', '', $target_title ), // brタグを除去して格納.
+		'comment' => get_field( 'comment_' . $idx ),
+		'score'   => get_field( 'score_' . $idx ),
 	);
+	$count++;
 }
 
 // 総合スコアの計算.
-$total_score_first_time = 0;
-foreach ( $score_first_time_array as $score ) {
-	$total_score_first_time += intval( $score );
-}
 $total_score_last_time = 0;
 foreach ( $score_last_time_array as $score ) {
 	$total_score_last_time += intval( $score );
@@ -47,21 +43,20 @@ foreach ( $score_last_time_array as $score ) {
 
 <?php get_header(); ?>
 <header id="l-header" class="p-header">
-	<h1 class="p-header__txt">あなたは<?php echo esc_html( $rank_first_time ); ?>から
-		<span class="p-header__strong">
+	<h1 class="p-header__txt">
+		あなたは <span class="p-header__strong">
 			<?php echo esc_html( $rank_last_time ); ?>
-		</span>
-		になりました！
+		</span> です。
 	</h1>
 </header>
 
 <main id="l-container">
-	<div class="p-flex">
+	<div class="l-container__inn">
 
 		<!-- チャート部分 -->
 		<section id="l-left">
 			<div class="p-chart">
-				<h2 class="p-chart__title">初回と最終回のスコア比較</h2>
+				<!--<h2 class="p-chart__title">最終回スコア</h2>-->
 				<div class="p-chart__graph">
 					<canvas id="myChart"></canvas>
 				</div>
@@ -69,16 +64,12 @@ foreach ( $score_last_time_array as $score ) {
 					<div class="p-chart__last">
 						<p class="p-chart__last-title">総合スコア</p>
 						<p class="p-chart__last-score"><?php echo esc_html( $total_score_last_time ); ?></p>
-						<p class="p-chart__last-small">(最終回)</p>
-					</div>
-					<div class="p-chart__first">
-						<p class="p-chart__first-score"><?php echo esc_html( $total_score_first_time ); ?></p>
-						<p class="p-chart__first-small">(初回)</p>
+						<!--<p class="p-chart__last-small">(最終回)</p>-->
 					</div>
 				</div>
-				<div class="p-chart-logo">
+				<!--<div class="p-chart-logo">
 					<img src="<?php echo esc_html( get_template_directory_uri() . '/images/logo.svg' ); ?>" alt="<?php bloginfo( 'name' ); ?>">
-				</div>
+				</div>-->
 			</div>
 		</section>
 
@@ -108,12 +99,12 @@ foreach ( $score_last_time_array as $score ) {
 	<section id="l-bottom">
 		<div class="p-bottom-contents p-flex">
 			<div class="p-meesage">
-				<h2 class="p-meesage__title"><i class="far fa-comment"></i><span>担当者からのメッセージ</span></h2>
-				<p class="p-meesage__txt"><?php echo wp_kses_post( $message ); ?></p>
+				<!--<h2 class="p-meesage__title"><i class="far fa-comment"></i><span>担当者からのメッセージ</span></h2>
+				<p class="p-meesage__txt"><?php echo wp_kses_post( $message ); ?></p>-->
 			</div>
 			<div class="p-meta">
-				<p class="p-meta__name"><?php echo esc_html( $name ); ?></p>
-				<p class="p-meta__date">受講期間(<?php echo esc_html( $date_start . '〜' . $date_end ); ?>)</p>
+				<!--<p class="p-meta__name"><?php echo esc_html( $name ); ?></p>
+				<p class="p-meta__date">受講期間(<?php echo esc_html( $date_start . '〜' . $date_end ); ?>)</p>-->
 				<div class="p-logo">
 					<a class="p-logo__link" href="<?php echo esc_url( home_url() ); ?>">
 						<img src="<?php echo esc_html( get_template_directory_uri() . '/images/logo.svg' ); ?>" alt="<?php bloginfo( 'name' ); ?>">
@@ -130,8 +121,7 @@ foreach ( $score_last_time_array as $score ) {
 <?php
 
 // chart.jsの設定用のjsonを作成する.
-$score_first_time_json = wp_json_encode( $score_first_time_array );// 初回時の点数(json).
-$score_last_time_json  = wp_json_encode( $score_last_time_array );// 終了時の点数(json).
+$score_last_time_json = wp_json_encode( $score_last_time_array );// 終了時の点数(json).
 
 // 項目名の設定。
 // ラベル項目名に<br>タグがあった場合、改行する
@@ -145,21 +135,13 @@ $title_array_json = wp_json_encode( $title_array_br, JSON_UNESCAPED_UNICODE );//
 ?>
 <script>
 	var ctx = document.getElementById("myChart").getContext("2d");
-	ctx.canvas.width = 710;
-	ctx.canvas.height = 710;
+	ctx.canvas.width = 660;
+	ctx.canvas.height = 660;
 	var myLineChart = new Chart(ctx, {
 	type: "radar",
 	data: {
 		labels: <?php echo $title_array_json; ?>,
 		datasets: [
-			{
-				label: "初回",
-				data: <?php echo $score_first_time_json; ?>,
-				borderWidth: 3,
-				pointBackgroundColor: "rgba(57,210,214,1)",
-				backgroundColor: "rgba(57,210,214,0.2)",
-				borderColor: "rgba(57,210,214,1)"
-			},
 			{
 				label: "最終回",
 				data: <?php echo $score_last_time_json; ?>,
@@ -171,6 +153,9 @@ $title_array_json = wp_json_encode( $title_array_br, JSON_UNESCAPED_UNICODE );//
 		]
 	},
 	options: {
+		legend: {
+			display: false
+		},
 		scale: {
 			pointLabels: {
 				fontSize: 16, // 文字の大きさ

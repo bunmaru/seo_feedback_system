@@ -18,6 +18,10 @@ html {
 	vertical-align: baseline;
 }
 
+body {
+	max-height: 1920px;
+}
+
 body,
 h1,
 h2,
@@ -97,21 +101,11 @@ img {
 #l-header,
 #l-container,
 #l-bottom {
-	width: 1920px;
+	width: 1371px;
 }
 
-#l-left {
-	-webkit-box-flex: 0;
-	-ms-flex: 0 0 50%;
-	flex: 0 0 50%;
-	padding: 30px 20px 30px 40px;
-}
-
-#l-right {
-	-webkit-box-flex: 0;
-	-ms-flex: 0 0 50%;
-	flex: 0 0 50%;
-	padding: 30px 40px 30px 20px;
+.l-container__inn {
+	padding: 40px 80px;
 }
 
 /**
@@ -163,9 +157,8 @@ img {
 }
 
 .p-chart__graph {
-	height: 730px;
-	margin: 40px auto 0 auto;
-	width: 710px;
+	margin: 0 auto;
+	width: 660px;
 }
 
 .p-chart__score {
@@ -241,6 +234,10 @@ img {
 	width: 250px;
 }
 
+.p-right-contents {
+	margin-top: 40px;
+}
+
 /**
 * 項目
 */
@@ -261,9 +258,9 @@ img {
 
 .p-list__title-area {
 	-webkit-box-flex: 1;
-	-ms-flex: 1 0 calc(100% - 70px);
-	flex: 1 0 calc(100% - 70px);
-	padding: 20px;
+	-ms-flex: 1 0 calc(100% - 110px - 2px);
+	flex: 1 0 calc(100% - 110px - 2px);
+	padding: 30px;
 }
 
 .p-list__title {
@@ -287,8 +284,8 @@ img {
 	display: -webkit-box;
 	display: -ms-flexbox;
 	display: flex;
-	-ms-flex: 0 0 70px;
-	flex: 0 0 70px;
+	-ms-flex: 0 0 110px;
+	flex: 0 0 110px;
 	-ms-flex-align: center;
 	-ms-flex-pack: center;
 	font-size: 40px;
@@ -304,11 +301,11 @@ img {
 }
 
 .p-meta {
-	background-color: #fafafa;
+	/*background-color: #fafafa;*/
 	-webkit-box-flex: 0;
 	-ms-flex: 0 0 416px;
 	flex: 0 0 416px;
-	padding: 30px 40px;
+	padding: 40px 80px 40px 40px;
 }
 
 .p-meta__name {
@@ -328,7 +325,7 @@ img {
 	-webkit-box-flex: 1;
 	-ms-flex: 1 0 calc(100% - 416px);
 	flex: 1 0 calc(100% - 416px);
-	padding: 30px 40px;
+	padding: 40px 40px 40px 80px;
 }
 
 .p-meesage__title {
@@ -347,7 +344,7 @@ img {
 }
 
 .p-meesage__txt {
-	height: calc(4em * 1.8);
+	height: calc(6em * 1.8);
 	margin-top: 20px;
 	overflow: hidden;
 }
@@ -438,4 +435,3 @@ img {
 .c-btn span {
 	font-weight: 700;
 }
-/*# sourceMappingURL=style.css.map */
