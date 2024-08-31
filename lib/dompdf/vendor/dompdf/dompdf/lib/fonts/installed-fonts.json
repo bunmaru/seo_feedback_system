@@ -1,0 +1,12 @@
+{
+    "noto sans": {
+        "normal": "\/Users\/suzukiryo\/Local Sites\/sandbox\/app\/public\/wp-content\/themes\/seo_feedback_system\/lib\/dompdf\/vendor\/dompdf\/dompdf\/lib\/fonts\/noto_sans_normal_b3f5cddfd313100d76ebe4cb06deabfb",
+        "bold": "noto_sans_bold_595dc4c733528ac8b18fdc3b02b0bd1d"
+    },
+    "noto sans jp": {
+        "normal": "\/Users\/suzukiryo\/Local Sites\/sandbox\/app\/public\/wp-content\/themes\/seo_feedback_system\/lib\/dompdf\/vendor\/dompdf\/dompdf\/lib\/fonts\/NotoSansJP-VariableFont_wght",
+        "bold": "\/Users\/suzukiryo\/Local Sites\/sandbox\/app\/public\/wp-content\/themes\/seo_feedback_system\/lib\/dompdf\/vendor\/dompdf\/dompdf\/lib\/fonts\/NotoSansJP-VariableFont_wght",
+        "italic": "\/Users\/suzukiryo\/Local Sites\/sandbox\/app\/public\/wp-content\/themes\/seo_feedback_system\/lib\/dompdf\/vendor\/dompdf\/dompdf\/lib\/fonts\/NotoSansJP-VariableFont_wght",
+        "bold_italic": "\/Users\/suzukiryo\/Local Sites\/sandbox\/app\/public\/wp-content\/themes\/seo_feedback_system\/lib\/dompdf\/vendor\/dompdf\/dompdf\/lib\/fonts\/NotoSansJP-VariableFont_wght"
+    }
+}

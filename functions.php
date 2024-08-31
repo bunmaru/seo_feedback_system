@@ -4,6 +4,80 @@
  *
  * @package Collection
  */
+require_once get_template_directory() . '/lib/dompdf/autoload.inc.php';
+
+use Dompdf\Dompdf;
+use Dompdf\Options;
+
+function generate_pdf($ID, $post) {
+    // 投稿ページのURLを取得
+    $url = get_permalink($ID);
+    $html = file_get_contents($url);  // 投稿ページのHTMLを取得
+
+    // DOMPDFの設定
+    $options = new Options();
+    $options->set('isHtml5ParserEnabled', true);
+    $options->set('isPhpEnabled', true);
+    $options->set('isRemoteEnabled', true);  // リモートコンテンツの使用を許可
+    $dompdf = new Dompdf($options);
+
+    // テーマのstyle.cssを読み込む
+    $theme_directory = get_template_directory();
+    $css_file = $theme_directory . '/style.css';
+
+    // CSSで倍率と余白を調整
+    $custom_css = '
+        @font-face {
+            font-family: "Noto Sans JP";
+            src: url("/lib/dompdf/vendor/dompdf/dompdf/lib/fonts/NotoSansJP-VariableFont_wght.ttf");
+        }
+        body {
+            font-family: "Noto Sans JP", sans-serif;
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            box-sizing: border-box;
+            overflow: hidden;
+            transform: scale(0.5); /* サイズ調整（86％に設定） */
+            transform-origin: top left;
+        }
+        @page {
+            margin: 0; /* 余白なし */
+            size: A4; /* 用紙サイズをA4に設定 */
+        }
+        .container {
+            width: 100%;
+            height: 100%;
+            box-sizing: border-box;
+        }
+    ';
+    
+    // CSSをHTMLに追加
+	$html = '<meta charset="UTF-8">' . '<style>' . $custom_css . '</style>' . $html;
+
+    $dompdf->loadHtml($html);
+    $dompdf->setPaper('A4', 'portrait');  // A4縦の設定
+    $dompdf->render();
+
+    // PDFの保存
+    $upload_dir = wp_upload_dir();
+    $pdf_dir = $upload_dir['basedir'] . '/pdf';  // pdfフォルダ内に保存
+    if (!file_exists($pdf_dir)) {
+        wp_mkdir_p($pdf_dir);  // フォルダが存在しない場合は作成
+    }
+    $pdf_output_path = $pdf_dir . "/post-$ID.pdf";
+    file_put_contents($pdf_output_path, $dompdf->output());
+}
+
+// 新規投稿時にPDFを生成
+add_action('publish_post', 'generate_pdf', 10, 2);
+
+// 投稿が更新された場合にもPDFを生成
+add_action('post_updated', 'generate_pdf', 10, 2);
+
+
+
 
 /**
  * 各種設定を行う
@@ -44,9 +118,9 @@ add_filter( 'wp_big_image_size_threshold', '__return_false' );
 /**
  * 関数を個々に読み込む
  */
-//get_template_part( 'inc/customizer' ); // カスタマイザーの設定.
+// get_template_part( 'inc/customizer' ); // カスタマイザーの設定.
 // get_template_part( 'inc/widgets' ); // ウィジェットの設定.
-//get_template_part( 'inc/shortcode' ); // ショートコードの設定.
+// get_template_part( 'inc/shortcode' ); // ショートコードの設定.
 // get_template_part( 'inc/search' ); // 検索ページの機能.
 
 /**
